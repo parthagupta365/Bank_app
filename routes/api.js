@@ -16,6 +16,38 @@ var bank_acct =
   var transaction =
     mongoose.model('transaction', require('../models/transaction'), 'transactions');
   
+// creating bank account
+router.post('/create_acct',function(req,res,next){
+    //if(!req.session.username){
+      //  res.redirect('/login');
+        //next();
+    //}
+    var create_acct = req.body;
+
+    if(!create_acct.account_num || !create_acct.username || !create_acct.passwordSalt ){
+        res.status(400);
+        res.json({"error":"bad data"});
+    }
+    else{
+        var newbank_acct = new bank_acct({
+          account_num:create_acct.account_num,
+          username:create_acct.username,
+          passwordSalt:create_acct.passwordSalt,
+          beneficiary: create_acct.beneficiary,
+          currency:create_acct.currency,
+          balance:create_acct.balance
+        });
+        newbank_acct.save(function(err,acct){
+         if(err){
+        res.send(err);
+    
+    }   
+    res.json(acct);
+        })
+    }
+} );
+
+
   // function for gettiing balance
 router.get('/balanceinfo', function(req,res,next){
     //if(!req.session.username){
@@ -80,6 +112,38 @@ bank_acct.update({account_num:acct_num},
     res.json(task);
 });
 });
+
+// transfer funds
+router.post('/transfer',function(req,res,next){
+    //if(!req.session.username){
+      //  res.redirect('/login');
+        //next();
+    //}
+    var transfer = req.body;
+
+    if(!transfer.to_account_num || !transfer.amount ){
+        res.status(400);
+        res.json({"error":"bad data"});
+    }
+    else{
+        var newtransfer = new transaction({
+          trans_id:transfer.trans_id,
+          from_account_num:transfer.from_account_num,
+          to_account_num:transfer.to_account_num,
+          trans_type:transfer.trans_type,
+          trans_date:transfer.trans_date,
+          currency:transfer.currency,
+          amount:transfer.amount
+        });
+        newtransfer.save(function(err,trf){
+         if(err){
+        res.send(err);
+    
+    }   
+    res.json(trf);
+        })
+    }
+} );
 });
 
 
