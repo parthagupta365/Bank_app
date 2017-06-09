@@ -1,4 +1,5 @@
 var express = require('express');
+
 var bodyParser = require('body-parser');
 var path = require('path');
 var api = require('./routes/api');
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname,'client')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}));
+
 
 app.use('/home',api);
 app.listen(port,function(){

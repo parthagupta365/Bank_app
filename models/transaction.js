@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+// model for transactions
 var transactionSchema = {
   trans_id:{
       type: String,
@@ -22,5 +23,5 @@ var transactionSchema = {
    }
 };
 
-module.exports = new mongoose.Schema(bank_acctSchema);
-module.exports.bank_acctSchema = bank_acctSchema;
+module.exports = new mongoose.Schema(transactionSchema);
+module.exports.transactionSchema = transactionSchema;

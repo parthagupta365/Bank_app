@@ -1,13 +1,20 @@
 var mongoose = require('mongoose');
 
+// model for bank account
 var bank_acctSchema = {
   account_num: { type: Number, required: true },
-  user_name: {
-    type: String,
-    required: true
-  },
+  username: {
+      type: String,
+      required: true,
+      lowercase: true
+    },
+    passwordSalt: {
+       type: String,
+       required: true
+    },
   beneficiary: [{
-    type: String
+    username: {type: String},
+    account_num: {type: Number}
   }],
   currency: {
       type: String,
@@ -17,7 +24,8 @@ var bank_acctSchema = {
     },
    balance: {
        type: Number,
-       required : true
+       required : true,
+       default:0
    }
 };
 
