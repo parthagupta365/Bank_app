@@ -80,9 +80,10 @@ if(err){
     }
     res.json(trans);    
 })
+});
 // remove beneficiary details
 
-router.put('/remove_beneficiary/:acct_num/:user_name',function(req,res,next){
+router.put('/removebeneficiary/:acct_num/:user_name',function(req,res,next){
     //if(!req.session.username){
       //  res.redirect('/login');
         //next();
@@ -98,7 +99,7 @@ bank_acct.update({account_num:req.params.acct_num,'beneficiary.username':req.par
 });
 
 // add beneficiary details
-    router.put('/add_beneficiary/:acct_num/:user_name/:benacct_num',function(req,res,next){
+    router.put('/addbeneficiary/:acct_num/:user_name/:benacct_num',function(req,res,next){
     //if(!req.session.username){
       //  res.redirect('/login');
         //next();
@@ -127,7 +128,7 @@ router.post('/transfer',function(req,res,next){
     }
     else{
         var newtransfer = new transaction({
-          trans_id:transfer.trans_id,
+          
           from_account_num:transfer.from_account_num,
           to_account_num:transfer.to_account_num,
           trans_type:transfer.trans_type,
@@ -144,7 +145,7 @@ router.post('/transfer',function(req,res,next){
         })
     }
 } );
-});
+
 
 
 module.exports = router;

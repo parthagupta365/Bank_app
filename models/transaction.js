@@ -2,11 +2,7 @@ var mongoose = require('mongoose');
 
 // model for transactions
 var transactionSchema = {
-  trans_id:{
-      type: String,
-      required: true,
-
-  },
+  
   from_account_num: { type: Number, required: true },
   to_account_num: { type: Number, required: true },
   trans_type:{type: String, required: true},

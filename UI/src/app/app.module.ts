@@ -7,10 +7,13 @@ import { AppComponent } from './app.component';
 import {CreateacctComponent} from './components/createacct.component';
 import {GetbalComponent} from './components/getbal.component';
 import {GetstatementComponent} from './components/getstatement.component';
+import {AddremoveComponent} from './components/addremove.component';
+import {TransComponent} from './components/trans.component';
 import { AppRoutingModule } from './app.routing.module';
+
 @NgModule({
   declarations: [
-    AppComponent,CreateacctComponent,GetbalComponent,GetstatementComponent
+    AppComponent,CreateacctComponent,GetbalComponent,GetstatementComponent,AddremoveComponent,TransComponent
   ],
   imports: [
     BrowserModule,HttpModule, FormsModule,AppRoutingModule,FlashMessagesModule

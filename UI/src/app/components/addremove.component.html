@@ -1,0 +1,41 @@
+<h1> Add Remove Beneficiary </h1>
+    
+    
+    <form (ngSubmit)="addben($event)" #acctForm="ngForm">
+        <div class="form-group">
+        <label for="account_num">Account Number</label>
+        <input type="text"  class="form-control" id="account_num"
+         [(ngModel)]="account_num" name="account_num">
+      </div>
+      <div class="form-group">
+        <label for="benusername">Beneficiary Username</label>
+        <input type="text"  class="form-control" id="benusername"
+         [(ngModel)]="benusername" name="benusername">
+      </div>
+      <div class="form-group">
+        <label for="ben_acct">Beneficiary Account number</label>
+        <input type="number"  class="form-control" id="ben_acct"
+         [(ngModel)]="ben_acct" name="ben_acct">
+      </div>
+      <div class="form-group">
+        <button type="submit" >Add</button>
+      </div>
+      </form>
+
+<hr>
+     <form (ngSubmit)="removeben($event)" #removeForm="ngForm">
+      <div class="form-group">
+        <label for="re_account_num">Account number</label>
+        <input type="text"  class="form-control" id="re_account_num"
+         [(ngModel)]="re_account_num" name="re_account_num">
+      </div>
+      <div class="form-group">
+        <label for="re_benusername">Beneficiary Username</label>
+        <input type="text"  class="form-control" id="re_benusername"
+         [(ngModel)]="re_benusername" name="re_benusername">
+      </div>
+      <div class="form-group">
+        <button type="submit" >Remove</button>
+      </div>
+      
+    </form>

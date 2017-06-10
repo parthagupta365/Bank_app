@@ -25,4 +25,25 @@ export class AcctService{
     getStatement(newAcct,fromdt,todt){
         return this.http.get('http://localhost:3000/home/statement/'+newAcct+'/'+fromdt+'/'+todt).map( res => res.json());
     }
+    addBen(account_num,benusername,ben_acctname){
+        
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.put('/home/addbeneficiary/'+account_num+'/'+benusername+'/'+ben_acctname,{headers: headers})
+        .map(res => res.json());
+    }
+    removeBen(account_num,benusername){
+        
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.put('/home/removebeneficiary/'+account_num+'/'+benusername,{headers: headers})
+        .map(res => res.json());
+    }
+    addTrans(newTrans){
+       console.log(newTrans);
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post('http://localhost:3000/home/transfer',JSON.stringify(newTrans),{headers: headers})
+        .map(res => res.json()); 
+    }
 }
