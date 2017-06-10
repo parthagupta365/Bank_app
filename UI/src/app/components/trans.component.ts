@@ -18,7 +18,8 @@ export class TransComponent {
           to_account_num:number;
           trans_type: string;
           trans_date: Date;
-          currency: string;
+          fromcurrency: string;
+          tocurrency: string;
           amount: number;
 constructor(private acctservice: AcctService,private _flashMessagesService: FlashMessagesService){
     
@@ -30,7 +31,7 @@ add_trans(event:Event){
           to_account_num: this.to_account_num,
           trans_type: this.trans_type,
           trans_date: this.trans_date,
-          currency: this.currency,
+          fromcurrency: this.fromcurrency,
           amount: this.amount
     }
   this.acctservice.addTrans(newTrans)
@@ -42,7 +43,8 @@ add_trans(event:Event){
           this.to_account_num = null;
           this.trans_type = "";
           this.trans_date = null;
-          this.currency = "";
+          this.fromcurrency = "";
+          this.tocurrency = "";
           this.amount = null;
     });
   }

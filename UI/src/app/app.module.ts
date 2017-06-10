@@ -9,16 +9,18 @@ import {GetbalComponent} from './components/getbal.component';
 import {GetstatementComponent} from './components/getstatement.component';
 import {AddremoveComponent} from './components/addremove.component';
 import {TransComponent} from './components/trans.component';
+import {LoginComponent} from './components/login.component';
 import { AppRoutingModule } from './app.routing.module';
+import { AuthGuard } from './authguard';
 
 @NgModule({
   declarations: [
-    AppComponent,CreateacctComponent,GetbalComponent,GetstatementComponent,AddremoveComponent,TransComponent
+    AppComponent,CreateacctComponent,GetbalComponent,GetstatementComponent,AddremoveComponent,TransComponent,LoginComponent
   ],
   imports: [
     BrowserModule,HttpModule, FormsModule,AppRoutingModule,FlashMessagesModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

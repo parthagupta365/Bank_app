@@ -24,7 +24,9 @@
     "express": "^4.15.3",
     "express-session": "^1.15.3",
     "express-validator": "^3.2.0",
+    "fixer-io-node": "^1.0.1",
     "mongoose": "^4.10.5",
+    "node-fixer-io": "^1.0.1",
     "path": "^0.12.7"
   }
 }

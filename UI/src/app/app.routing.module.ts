@@ -5,13 +5,16 @@ import {GetbalComponent} from './components/getbal.component';
 import {GetstatementComponent} from './components/getstatement.component';
 import {AddremoveComponent} from './components/addremove.component';
 import {TransComponent} from './components/trans.component';
+import {LoginComponent} from './components/login.component';
+import { AuthGuard } from './authguard';
 const appRoutes: Routes = [
   { path: 'create-acct', component: CreateacctComponent },
   { path: 'get-bal', component: GetbalComponent },
   { path: 'get-statement', component: GetstatementComponent},
   {path: 'add-remove', component: AddremoveComponent},
-  {path: 'trans-acct', component: TransComponent},
-  //{ path: '',   redirectTo: '/cart', pathMatch: 'full' },
+  {path: 'trans-acct', component: TransComponent, canActivate: [AuthGuard] },
+  {path: 'login', component: LoginComponent},
+  { path: '',   redirectTo: '/login', pathMatch: 'full' },
   //{ path: '**', component: PageNotFoundComponent }
 ];
 

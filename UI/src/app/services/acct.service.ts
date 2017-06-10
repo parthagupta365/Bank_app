@@ -1,6 +1,7 @@
 import {Http,Headers } from '@angular/http';
 import {Injectable} from  '@angular/core';
 import 'rxjs/add/operator/map';
+import { tokenNotExpired } from 'angular2-jwt';
 
 
 @Injectable()
@@ -46,4 +47,20 @@ export class AcctService{
         return this.http.post('http://localhost:3000/home/transfer',JSON.stringify(newTrans),{headers: headers})
         .map(res => res.json()); 
     }
+
+    login(credentials) {
+    this.http.post('https://localhost:3000/home/login', credentials)
+      .map(res => res.json())
+      .subscribe(
+        
+        data => localStorage.setItem('id_token', data.token),
+        error => console.log(error)
+      );
+  }
+  loggedIn() {
+  return tokenNotExpired();
+}
+logout() {
+    localStorage.removeItem('id_token'); 
+  }
 }

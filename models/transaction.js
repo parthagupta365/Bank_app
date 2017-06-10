@@ -7,7 +7,13 @@ var transactionSchema = {
   to_account_num: { type: Number, required: true },
   trans_type:{type: String, required: true},
   trans_date: { type: Date, default: Date.now },
-  currency: {
+  fromcurrency: {
+      type: String,
+      enum: ['USD', 'EUR', 'GBP'],
+      required: true
+      
+    },
+    tocurrency: {
       type: String,
       enum: ['USD', 'EUR', 'GBP'],
       required: true

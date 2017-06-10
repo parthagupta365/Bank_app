@@ -1,13 +1,13 @@
 var mongoose = require('mongoose');
 var express = require('express');
 var router = express.Router();
-var session = require('express-session');
-var validator = require('express-validator');
+var jwt = require('jwt-simple');
 
-router.use(validator());
-router.use(session({
-    secret : 'this is a secret',
-saveUninitialized: false, resave: false}));
+var fixer = require('node-fixer-io');
+
+
+
+
 mongoose.connect('mongodb://localhost:27017/test');
 
 
@@ -16,6 +16,33 @@ var bank_acct =
   var transaction =
     mongoose.model('transaction', require('../models/transaction'), 'transactions');
   
+
+//authentican service
+
+router.post('/login', function(req, res,next) {
+        bank_acct.findOne({
+            username: req.body.username
+        }, function(err, user){
+            if (err) throw err;
+            
+            if(!user) {
+                res.status(403).send({success: false, msg: 'Authentication failed, User not found'});
+            }
+            
+           else {
+                user.comparePassword(req.body.password, function(err, isMatch){
+                    if(isMatch && !err) {
+                        var token = jwt.encode(user, config.secret);
+                        res.json({success: true, token: token});
+                    } else {
+                        return res.status(403).send({success: false, msg: 'Authenticaton failed, wrong password.'});
+                    }
+                })
+            }
+            
+        })
+    });
+
 // creating bank account
 router.post('/create_acct',function(req,res,next){
     //if(!req.session.username){
@@ -120,7 +147,12 @@ router.post('/transfer',function(req,res,next){
       //  res.redirect('/login');
         //next();
     //}
-    var transfer = req.body;
+    transfer = req.body;
+    var frcur = transfer.fromcurrency;
+    var tocur = transfer.tocurrency;
+    var amount = transfer.amount;
+    
+
 
     if(!transfer.to_account_num || !transfer.amount ){
         res.status(400);
@@ -133,7 +165,8 @@ router.post('/transfer',function(req,res,next){
           to_account_num:transfer.to_account_num,
           trans_type:transfer.trans_type,
           trans_date:transfer.trans_date,
-          currency:transfer.currency,
+          fromcurrency:transfer.fromcurrency,
+          tocurrency:transfer.tocurrency,
           amount:transfer.amount
         });
         newtransfer.save(function(err,trf){
