@@ -49,12 +49,12 @@ router.post('/create_acct',function(req,res,next){
 
 
   // function for gettiing balance
-router.get('/balanceinfo', function(req,res,next){
+router.get('/balanceinfo/:acct_num', function(req,res,next){
     //if(!req.session.username){
       //  res.redirect('/login');
         //next();
     //}
-    bank_acct.find({},{_id:0,balance:1},function(err,bal){
+    bank_acct.find({account_num:req.params.acct_num},{_id:0,currency:1,balance:1},function(err,bal){
     if(err){
         return res.send(err);
     
@@ -87,7 +87,7 @@ router.put('/remove_beneficiary/:acct_num/:user_name',function(req,res,next){
       //  res.redirect('/login');
         //next();
     //}
-bank_acct.update({account_num:acct_num,'beneficiary.username':req.params.user_name},
+bank_acct.update({account_num:req.params.acct_num,'beneficiary.username':req.params.user_name},
 { $unset: { 'beneficiary.username': "", 'beneficiary.account_num': "" }},function(err,task){
     if(err){
         res.send(err);

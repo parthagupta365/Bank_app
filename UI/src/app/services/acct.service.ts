@@ -19,4 +19,10 @@ export class AcctService{
         return this.http.post('http://localhost:3000/home/create_acct',JSON.stringify(newAcct),{headers: headers})
         .map(res => res.json());
     }
+    getBal(newAcct){
+        return this.http.get('http://localhost:3000/home/balanceinfo/'+newAcct).map( res => res.json());
+    }
+    getStatement(newAcct,fromdt,todt){
+        return this.http.get('http://localhost:3000/home/statement/'+newAcct+'/'+fromdt+'/'+todt).map( res => res.json());
+    }
 }

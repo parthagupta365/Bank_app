@@ -5,10 +5,12 @@ import {FormsModule} from '@angular/forms';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AppComponent } from './app.component';
 import {CreateacctComponent} from './components/createacct.component';
+import {GetbalComponent} from './components/getbal.component';
+import {GetstatementComponent} from './components/getstatement.component';
 import { AppRoutingModule } from './app.routing.module';
 @NgModule({
   declarations: [
-    AppComponent,CreateacctComponent
+    AppComponent,CreateacctComponent,GetbalComponent,GetstatementComponent
   ],
   imports: [
     BrowserModule,HttpModule, FormsModule,AppRoutingModule,FlashMessagesModule
@@ -17,4 +19,3 @@ import { AppRoutingModule } from './app.routing.module';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-  

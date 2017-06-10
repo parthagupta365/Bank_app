@@ -17,7 +17,7 @@ account_num : number;
 username : string;
 password : String;
 currency : String;
-balance : Number;
+balance : number;
 constructor(private acctservice: AcctService,private _flashMessagesService: FlashMessagesService){
     
 }
