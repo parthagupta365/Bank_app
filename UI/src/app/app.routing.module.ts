@@ -6,7 +6,10 @@ import {GetstatementComponent} from './components/getstatement.component';
 import {AddremoveComponent} from './components/addremove.component';
 import {TransComponent} from './components/trans.component';
 import {LoginComponent} from './components/login.component';
+import {UnauthorizedComponent} from './components/unauthorized.component';
+import {AcctService} from './services/acct.service';
 import { AuthGuard } from './authguard';
+
 const appRoutes: Routes = [
   { path: 'create-acct', component: CreateacctComponent },
   { path: 'get-bal', component: GetbalComponent },
@@ -15,7 +18,8 @@ const appRoutes: Routes = [
   {path: 'trans-acct', component: TransComponent, canActivate: [AuthGuard] },
   {path: 'login', component: LoginComponent},
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
-  //{ path: '**', component: PageNotFoundComponent }
+  { path: 'unauthorized', component: UnauthorizedComponent }
+  
 ];
 
 @NgModule({

@@ -10,17 +10,19 @@ import {GetstatementComponent} from './components/getstatement.component';
 import {AddremoveComponent} from './components/addremove.component';
 import {TransComponent} from './components/trans.component';
 import {LoginComponent} from './components/login.component';
+import {UnauthorizedComponent} from './components/unauthorized.component';
+import {AcctService} from './services/acct.service';
 import { AppRoutingModule } from './app.routing.module';
 import { AuthGuard } from './authguard';
 
 @NgModule({
   declarations: [
-    AppComponent,CreateacctComponent,GetbalComponent,GetstatementComponent,AddremoveComponent,TransComponent,LoginComponent
+    AppComponent,CreateacctComponent,GetbalComponent,GetstatementComponent,AddremoveComponent,TransComponent,LoginComponent,UnauthorizedComponent
   ],
   imports: [
     BrowserModule,HttpModule, FormsModule,AppRoutingModule,FlashMessagesModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,AcctService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

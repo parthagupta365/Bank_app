@@ -56,7 +56,10 @@ export class AcctService{
         data => localStorage.setItem('id_token', data.token),
         error => console.log(error)
       );
-  }
+setTimeout(function() {
+    localStorage.removeItem('id_token'); 
+  }, 600000);
+}
   loggedIn() {
   return tokenNotExpired();
 }
